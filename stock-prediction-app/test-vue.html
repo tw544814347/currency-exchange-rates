@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Vue测试页面</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+    .card {
+      background-color: #f0f2f5;
+      border-radius: 8px;
+      padding: 20px;
+      margin-bottom: 20px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+    .success {
+      color: #52c41a;
+      font-weight: bold;
+    }
+    button {
+      background-color: #1890ff;
+      color: white;
+      border: none;
+      padding: 8px 16px;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <div id="app">
+    <h1>Vue 3 测试页面</h1>
+    
+    <div class="card">
+      <h2>{{ message }}</h2>
+      <p class="success" v-if="loaded">Vue 成功加载！</p>
+      <p>计数器: {{ counter }}</p>
+      <button @click="increment">增加</button>
+    </div>
+    
+    <div class="card">
+      <h3>股票列表 (测试v-for)</h3>
+      <ul>
+        <li v-for="stock in stocks" :key="stock.symbol">
+          {{ stock.name }} ({{ stock.symbol }}) - {{ stock.price }}
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- 使用完整版Vue -->
+  <script src="https://unpkg.com/vue@3.2.31/dist/vue.global.js"></script>
+  <script>
+    // 创建Vue应用
+    const app = Vue.createApp({
+      data() {
+        return {
+          message: '股票预测平台测试',
+          loaded: true,
+          counter: 0,
+          stocks: [
+            { name: '阿里巴巴', symbol: '09988.HK', price: '¥82.15' },
+            { name: '腾讯控股', symbol: '00700.HK', price: '¥320.80' },
+            { name: '贵州茅台', symbol: '600519.SH', price: '¥1689.50' }
+          ]
+        }
+      },
+      methods: {
+        increment() {
+          this.counter++;
+        }
+      }
+    });
+    
+    // 挂载应用
+    app.mount('#app');
+    
+    // 控制台确认
+    console.log('Vue 应用已初始化');
+  </script>
+</body>
+</html> 

@@ -1,0 +1,13 @@
+
+
+执行应用：
+cd /Users/wei.tao/Desktop/Cursor\ FIles/stock_prediction_app_react && npm start
+
+
+域名：
+http://localhost:3000/ 
+
+
+token 获取：
+
+--7SUSK5NAMHI1WLVU

@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>股票预测分析平台</title>
+  <!-- 引入字体图标 -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+  <!-- React相关CDN依赖 -->
+  <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+  <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+  <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+  <script src="https://unpkg.com/react-router-dom@6/umd/react-router-dom.min.js"></script>
+  <link rel="stylesheet" href="src/assets/styles.css">
+  
+  <style>
+    /* API密钥设置对话框样式 */
+    #api-key-dialog {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: rgba(0, 0, 0, 0.5);
+      z-index: 9999;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+    }
+    
+    .api-dialog-content {
+      background-color: white;
+      border-radius: 8px;
+      padding: 20px;
+      width: 400px;
+      max-width: 90%;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    }
+    
+    .api-dialog-title {
+      font-size: 18px;
+      font-weight: bold;
+      margin-bottom: 16px;
+      color: #333;
+    }
+    
+    .api-dialog-body {
+      margin-bottom: 20px;
+    }
+    
+    .api-dialog-body p {
+      margin-bottom: 10px;
+      color: #666;
+      line-height: 1.5;
+    }
+    
+    .api-dialog-body input {
+      width: 100%;
+      padding: 8px 12px;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      margin-top: 5px;
+      margin-bottom: 10px;
+      box-sizing: border-box;
+    }
+    
+    .api-dialog-footer {
+      display: flex;
+      justify-content: flex-end;
+    }
+    
+    .api-dialog-footer button {
+      padding: 8px 16px;
+      border-radius: 4px;
+      cursor: pointer;
+      background-color: #1890ff;
+      color: white;
+      border: none;
+      font-size: 14px;
+    }
+    
+    /* 股票代码帮助样式 */
+    .stock-code-help {
+      margin-top: 15px;
+      padding: 10px;
+      background-color: #f8f9fa;
+      border-radius: 4px;
+      border-left: 3px solid #1890ff;
+    }
+    
+    .stock-code-help h4 {
+      font-size: 14px;
+      margin-top: 0;
+      margin-bottom: 8px;
+      color: #333;
+    }
+    
+    .stock-code-help ul {
+      margin: 0;
+      padding-left: 20px;
+      font-size: 13px;
+      color: #555;
+    }
+    
+    .stock-code-help li {
+      margin-bottom: 4px;
+      line-height: 1.4;
+    }
+    
+    .help-tip {
+      font-size: 12px;
+      color: #666;
+      font-style: italic;
+      margin-top: 8px;
+      margin-bottom: 0;
+    }
+  </style>
+</head>
+<body>
+  <div id="root"></div>
+  
+  <!-- API密钥设置对话框 -->
+  <div id="api-key-dialog">
+    <div class="api-dialog-content">
+      <div class="api-dialog-title">设置API密钥</div>
+      <div class="api-dialog-body">
+        <p>要获取实时股票数据，您需要设置一个Alpha Vantage API密钥。</p>
+        <p>您可以在 <a href="https://www.alphavantage.co/support/#api-key" target="_blank">Alpha Vantage官网</a> 免费获取API密钥。</p>
+        <label for="api-key-input">API密钥:</label>
+        <input type="text" id="api-key-input" placeholder="请输入您的Alpha Vantage API密钥" />
+        
+        <div class="stock-code-help">
+          <h4>股票代码示例：</h4>
+          <ul>
+            <li><strong>美股:</strong> AAPL (苹果), MSFT (微软), GOOGL (谷歌), AMZN (亚马逊), TSLA (特斯拉)</li>
+            <li><strong>港股:</strong> 00700.HK (腾讯), 09988.HK (阿里巴巴), 03690.HK (美团)</li>
+            <li><strong>A股:</strong> 600519.SH (贵州茅台), 000858.SZ (五粮液), 300750.SZ (宁德时代)</li>
+          </ul>
+          <p class="help-tip">提示: 在自选股添加框中可直接输入以上代码添加股票，如"AAPL"、"00700"或"600519"。</p>
+        </div>
+      </div>
+      <div class="api-dialog-footer">
+        <button id="save-api-key-btn">保存</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- 应用代码 - 使用Babel转换JSX -->
+  <script type="text/babel" src="src/components/App.js"></script>
+  <script type="text/babel" src="src/index.js"></script>
+</body>
+</html> 
